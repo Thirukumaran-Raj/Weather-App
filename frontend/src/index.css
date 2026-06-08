@@ -1,0 +1,23 @@
+/* index.css */
+
+/* 1. Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Body Styling & Background */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* A pleasant, cloudy-sky gradient background */
+  background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  
+  /* Center the app on the screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}

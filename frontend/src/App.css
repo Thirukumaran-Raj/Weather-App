@@ -1,0 +1,201 @@
+/* app.css */
+
+/* Global App Layout Settings */
+.app-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 1.2s ease-in-out; /* Super smooth wallpaper transition */
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   DYNAMIC REAL-TIME THEMES (Gradients)
+   ========================================== */
+.theme-default { background: linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%); }
+.theme-clear { background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%); }      /* Golden Horizon */
+.theme-clouds { background: linear-gradient(135deg, #61a0a8 0%, #5b7376 100%); }     /* Slate Gray Sky */
+.theme-rain { background: linear-gradient(135deg, #485563 0%, #29323c 100%); }       /* Deep Charcoal Storm */
+.theme-thunderstorm { background: linear-gradient(135deg, #141e30 0%, #243b55 100%); }/* Heavy Dark Indigo */
+.theme-night { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); } /* Midnight Glow */
+.theme-mist { background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%); }       /* Foggy Veil */
+.theme-snow { background: linear-gradient(135deg, #e6dada 0%, #274046 100%); }      /*Snow Effect*/
+
+/* ==========================================
+   GLASSMORPHISM APP CARD
+   ========================================== */
+.app-container {
+  position: relative;
+  z-index: 10; /* Forces card ahead of atmospheric layers */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  padding: 40px;
+  width: 90vw;
+  max-width: 490px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================
+   INPUTS AND ACTIONS UI
+   ========================================== */
+.search-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  outline: none;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   WEATHER INTERFACE CARD
+   ========================================== */
+.weather-card {
+  margin-top: 30px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #ffffff;
+  backdrop-filter: blur(5px);
+  animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cardPop {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ==========================================
+   5-DAY FORECAST UI & ANIMATIONS
+   ========================================== */
+/* ==========================================
+   5-DAY FORECAST UI & ANIMATIONS
+   ========================================== */
+.forecast-container {
+  display: flex;
+  flex-direction: row; /* Forces the items to sit side-by-side */
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 25px;
+  width: 100%;
+  overflow-x: auto; /* Allows smooth horizontal scrolling on small screens */
+  padding-bottom: 5px; /* Slight padding for the scrollbar */
+}
+
+/* Customizing the scrollbar to match the glass theme */
+.forecast-container::-webkit-scrollbar {
+  height: 6px;
+}
+.forecast-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 65px; /* Prevents the days from squishing together */
+  background: rgba(255, 255, 255, 0.2); /* Solidifies the mini-glass card */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 12px 5px;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Staggered Animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: popUpStagger 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.stagger-0 { animation-delay: 0.1s; }
+.stagger-1 { animation-delay: 0.2s; }
+.stagger-2 { animation-delay: 0.3s; }
+.stagger-3 { animation-delay: 0.4s; }
+.stagger-4 { animation-delay: 0.5s; }
+
+@keyframes popUpStagger {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.forecast-day {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.forecast-icon {
+  width: 55px;
+  height: 55px;
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.3));
+}
+
+.forecast-temp {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: -5px; /* Pulls the temp closer to the icon */
+}

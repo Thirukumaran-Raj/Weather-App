@@ -1,0 +1,148 @@
+/* WeatherEffects.css */
+
+.weather-effects-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Sits behind the card container */
+  overflow: hidden;
+}
+
+/* ==========================================
+   1. REALISTIC LAYERED CLOUDS
+   ========================================== */
+.clouds-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.cloud-group {
+  position: absolute;
+  filter: blur(4px);
+  animation: smoothFloat linear infinite;
+}
+
+/* Cloud Structure using nested pseudo-elements for an organic shape */
+.cloud-bubble, .cloud-bubble::before, .cloud-bubble::after {
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  position: absolute;
+}
+.theme-thunderstorm .cloud-bubble, 
+.theme-thunderstorm .cloud-bubble::before, 
+.theme-thunderstorm .cloud-bubble::after {
+  background: rgba(40, 45, 55, 0.5); /* Dark storm clouds */
+}
+
+.cloud-bubble { width: 180px; height: 60px; border-radius: 30px; }
+.cloud-bubble::before { content: ''; width: 70px; height: 70px; top: -35px; left: 30px; }
+.cloud-bubble::after { content: ''; width: 90px; height: 90px; top: -45px; left: 75px; }
+
+.cg-1 { top: 10%; left: -300px; animation-duration: 45s; transform: scale(1); }
+.cg-2 { top: 25%; left: -300px; animation-duration: 35s; transform: scale(0.75); animation-delay: -15s; opacity: 0.7; }
+
+@keyframes smoothFloat {
+  0% { transform: translateX(-10vw); }
+  100% { transform: translateX(110vw); }
+}
+
+/* ==========================================
+   2. HIGH-SPEED KINETIC RAIN
+   ========================================== */
+.rain-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.drop {
+  position: absolute;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.6));
+  width: 1.5px;
+  height: 60px;
+  top: -60px;
+  transform: rotate(15deg); /* Slightly angled rainfall */
+  animation: rapidFall linear infinite;
+}
+
+@keyframes rapidFall {
+  0% { transform: translateY(-50px) rotate(15deg); }
+  100% { transform: translateY(105vh) rotate(15deg); }
+}
+
+/* ==========================================
+   3. LIGHTNING FLASH
+   ========================================== */
+.lightning-flash {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  opacity: 0;
+  animation: flash 6s ease-out infinite;
+}
+
+@keyframes flash {
+  0%, 94%, 98%, 100% { opacity: 0; }
+  95%, 97% { opacity: 0.45; }
+  96% { opacity: 0.8; }
+}
+
+/* ==========================================
+   4. STREAMLINED WIND
+   ========================================== */
+.wind-stream {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  height: 1.5px;
+  width: 250px;
+  left: -300px;
+  animation: windBlow linear infinite;
+}
+
+@keyframes windBlow {
+  0% { transform: translateX(0) skewX(-20deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(130vw) skewX(-20deg); opacity: 0; }
+}
+
+/* ==========================================
+   5. DRIFTING SNOW
+   ========================================== */
+.snow-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.snowflake {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  top: -20px;
+  /* Adds a soft glowing blur to mimic real snowflakes out of focus */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  filter: blur(1px);
+  animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+  0% { 
+    transform: translateY(-5vh) translateX(0); 
+  }
+  50% {
+    /* Slight sway in the middle of the fall */
+    transform: translateY(50vh) translateX(20px);
+  }
+  100% { 
+    transform: translateY(105vh) translateX(-15px); 
+  }
+}
