@@ -5,7 +5,7 @@ import Forecast from "../components/Forecast"; // <-- Import Forecast
 import Loader from "../components/Loader";
 import WeatherEffects from "../components/WeatherEffects";
 import { getWeather } from "../services/api"; 
-import "../app.css";
+import "../App.css";
 
 function Home() {
   const [weather, setWeather] = useState(null);
